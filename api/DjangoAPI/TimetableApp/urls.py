@@ -3,6 +3,9 @@ from TimetableApp import views
 
 
 urlpatterns=[
+    url(r'^auditory$', views.auditoryApi),
+    url(r'^auditory/([0-9]+)$', views.auditoryApi),
+
     url(r'^department$', views.departmentApi),
     url(r'^department/([0-9]+)$', views.departmentApi),
 

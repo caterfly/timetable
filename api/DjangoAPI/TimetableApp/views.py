@@ -3,10 +3,12 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from TimetableApp.models import Department, Group, Teacher, Classroom
-from TimetableApp.serializers import DepartmentSerializer, TeacherSerializer, GroupSerializer, ClassroomSerializer
+from TimetableApp.models import Auditory, Department, Group, Teacher, Classroom
+from TimetableApp.serializers import AuditorySerializer, DepartmentSerializer, TeacherSerializer, GroupSerializer, ClassroomSerializer
 
 # Create your views here.
+
+
 
 @csrf_exempt
 def departmentApi(request, id=0):
@@ -32,6 +34,31 @@ def departmentApi(request, id=0):
     elif request.method=='DELETE':
         department=Department.objects.get(DepartmentId=id)
         department.delete()
+        return JsonResponse("Deleted Successfully", safe=False)
+@csrf_exempt
+def auditoryApi(request, id=0):
+    if request.method=='GET':
+        auditories = Auditory.objects.all()
+        auditories_serializer=AuditorySerializer(auditories, many=True)
+        return JsonResponse(auditories_serializer.data, safe=False)
+    elif request.method=='POST':
+        auditory_data=JSONParser().parse(request)
+        auditories_serializer=AuditorySerializer(data=auditory_data)
+        if auditories_serializer.is_valid():
+            auditories_serializer.save()
+            return JsonResponse("Added Successfully", safe=False)
+        return JsonResponse("Failed to Add", safe=False)
+    elif request.method=='PUT':
+        auditory_data=JSONParser().parse(request)
+        auditory=Auditory.objects.get(AuditoryId=auditory_data['AuditoryId'])
+        auditories_serializer=AuditorySerializer(auditory,data=auditory_data)
+        if auditories_serializer.is_valid():
+            auditories_serializer.save()
+            return JsonResponse("Updated Successfully", safe=False)
+        return JsonResponse("Failed to Update", safe=False)
+    elif request.method=='DELETE':
+        auditory=Auditory.objects.get(DepartmentId=id)
+        auditory.delete()
         return JsonResponse("Deleted Successfully", safe=False)
 
 @csrf_exempt

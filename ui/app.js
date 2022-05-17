@@ -5,7 +5,8 @@ const routes=[
     {path:'/teacher',component:teacher},
     {path:'/group',component:group},
     {path:'/classroom',component:classroom},
-    {path:'/department',component:department}
+    {path:'/department',component:department},
+    {path:'/auditory',component:auditory}
 ]
 
 const router = VueRouter.createRouter({
