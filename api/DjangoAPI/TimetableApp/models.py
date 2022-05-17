@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class Auditory(models.Model):  # Faculty - name, only Name field
+class Auditories(models.Model):  # Faculty - name, only Name field
     AuditoryId = models.AutoField(primary_key=True)
     TypeOfClass = models.CharField(max_length=500)
     Capacity = models.CharField(max_length=500)
@@ -101,7 +101,7 @@ class entries(models.Model):
     Day = models.CharField(max_length=500)
     ClassNumber = models.CharField(max_length=500)
 
-
+'''
 class Department(models.Model): #Faculty - name, only Name field
     DepartmentId = models.AutoField(primary_key=True)
     DepartmentName = models.CharField(max_length=500)
@@ -119,6 +119,6 @@ class Group(models.Model):
 
 class Classroom(models.Model):
     ClassroomId = models.AutoField(primary_key=True)
-    ClassroomNumber = models.CharField(max_length=500)
+    ClassroomNumber = models.CharField(max_length=500)'''
 
 
