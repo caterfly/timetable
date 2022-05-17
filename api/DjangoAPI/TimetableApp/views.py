@@ -26,7 +26,7 @@ def auditoryApi(request, idd=0):
         return JsonResponse("Failed to Add", safe=False)
     elif request.method=='PUT':
         auditory_data=JSONParser().parse(request)
-        auditory=Auditory.objects.get(id=auditory_data['id'])
+        auditory=Auditories.objects.get(id=auditory_data['id'])
         auditories_serializer=AuditorySerializer(auditory,data=auditory_data)
         if auditories_serializer.is_valid():
             auditories_serializer.save()
